@@ -23,7 +23,7 @@
 18) select * from worker where FIRST_NAME like '______h%';
 19) select * from worker where SALARY >= 100000 and SALARY <= 500000;
     select * from worker where SALARY between 100000 and 500000;
-20) select * from Worker where to_char(joing_date, 'mon') = 'mar;
+20) select * from Worker where to_char(joing_date, 'mon') = 'mar';
 21) select COUNT(*) from worker where DEPARTMENT = 'Sales';
 22) select FIRST_NAME, SALARY from worker where SALARY between 50000 and 100000;
 23)
