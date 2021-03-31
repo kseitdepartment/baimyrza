@@ -1,85 +1,162 @@
-1) select FIRST_NAME as worker_name from worker
-2) select upper(FIRST_NAME) from worker
-3) select distinct DEPARTMENT from worker;
-4) select substring(FIRST_NAME,1,3) from worker;
-5) select POSITION('G' in FIRST_NAME) from worker where FIRST_NAME = 'Getti';
-6) select TRIM(TRAILING from FIRST_NAME) from worker 
-   select RTRIM(FIRST_NAME) from worker;
-7) select TRIM(LEADING from FIRST_NAME) from worker 
-   select LTRIM(FIRST_NAME) from worker;
-8) select distinct length(DEPARTMENT) from worker
-9) select replace(FIRST_NAME, 'a', 'A') from worker
-10) select CONCAT(FIRST_NAME, ' ', LAST_NAME) AS 'COMPLETE_NAME' from worker;
-11) select * FROM worker order by FIRST_NAME asc
-12) select * FROM worker order by FIRST_NAME desc
-13) select * from worker where FIRST_NAME = 'Getti' or FIRST_NAME = 'Donni';
-    select * from worker where FIRST_NAME in ('Getti','Donni');
-14) select * from worker where FIRST_NAME <> 'Getti' and FIRST_NAME <> 'Donni';
-    select * from worker where FIRST_NAME not in ('Getti','Donni');
-15) select * from worker where DEPARTMENT = 'Sales';
-    select * from Worker where DEPARTMENT like 'Sales%';
-16) select * from worker where FIRST_NAME like '%a%';
-17) select * from worker where FIRST_NAME like '%a';
-18) select * from worker where FIRST_NAME like '______h%';
-19) select * from worker where SALARY >= 100000 and SALARY <= 500000;
-    select * from worker where SALARY between 100000 and 500000;
-20) select * from Worker where to_char(joing_date, 'mon') = 'mar';
-21) select COUNT(*) from worker where DEPARTMENT = 'Sales';
-22) select FIRST_NAME, SALARY from worker where SALARY between 50000 and 100000;
+1) SELECT FIRST_NAME AS WORKER_NAME FROM WORKER
+2) SELECT UPPER(FIRST_NAME) FROM WORKER
+3) SELECT DISTINCT DEPARTMENT FROM WORKER;
+4) SELECT SUBSTRING(FIRST_NAME,1,3) FROM WORKER;
+5) SELECT POSITION('G' IN FIRST_NAME) FROM WORKER WHERE FIRST_NAME = 'Getti';
+6) SELECT TRIM(TRAILING FROM FIRST_NAME) FROM WORKER 
+   SELECT RTRIM(FIRST_NAME) FROM WORKER;
+7) SELECT TRIM(LEADING FROM FIRST_NAME) FROM WORKER 
+   SELECT LTRIM(FIRST_NAME) FROM WORKER;
+8) SELECT DISTINCT LENGTH(DEPARTMENT) FROM WORKER
+9) SELECT REPLACE(FIRST_NAME, 'a', 'A') FROM WORKER
+10) SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) AS 'COMPLETE_NAME' FROM WORKER;
+11) SELECT * FROM WORKER ORDER BY FIRST_NAME ASC
+12) SELECT * FROM WORKER ORDER BY FIRST_NAME DESC
+13) SELECT * FROM WORKER WHERE FIRST_NAME = 'Getti' OR FIRST_NAME = 'Donni';
+    SELECT * FROM WORKER WHERE FIRST_NAME IN ('Getti','Donni');
+14) SELECT * FROM WORKER WHERE FIRST_NAME <> 'Getti' AND FIRST_NAME <> 'Donni';
+    SELECT * FROM WORKER WHERE FIRST_NAME NOT IN ('Getti','Donni');
+15) SELECT * FROM WORKER WHERE DEPARTMENT = 'Sales';
+    SELECT * FROM WORKER WHERE DEPARTMENT LIKE 'Sales%';
+16) SELECT * FROM WORKER WHERE FIRST_NAME LIKE '%A%';
+17) SELECT * FROM WORKER WHERE FIRST_NAME LIKE '%A';
+18) SELECT * FROM WORKER WHERE FIRST_NAME LIKE '______H%';
+19) SELECT * FROM WORKER WHERE SALARY >= 100000 AND SALARY <= 500000;
+    SELECT * FROM WORKER WHERE SALARY BETWEEN 100000 AND 500000;
+20) SELECT * FROM WORKER WHERE TO_CHAR(JOING_DATE, 'MON') = 'MAR';
+21) SELECT COUNT(*) FROM WORKER WHERE DEPARTMENT = 'Sales';
+22) SELECT FIRST_NAME, SALARY FROM WORKER WHERE SALARY BETWEEN 50000 AND 100000;
 23)
-24) select DISTINCT W.FIRST_NAME, T.WORKER_TITLE
-    from worker W
-    INNER JOIN Title T
+24) SELECT DISTINCT W.FIRST_NAME, T.WORKER_TITLE
+    FROM WORKER W
+    INNER JOIN TITLE T
     ON W.WORKER_ID = T.WORKER_REF_ID
-    AND T.WORKER_TITLE in ('Developer');
-25)  select DEPARTMENT, COUNT(*)
-     from worker
+    AND T.WORKER_TITLE IN ('Developer');
+25)  SELECT DEPARTMENT, COUNT(*)
+     FROM WORKER
      GROUP BY DEPARTMENT
      HAVING COUNT(*) > 1;
-26) select * from worker where MOD(WORKER_ID, 2) <> 0;
-27) select * from worker where MOD(WORKER_ID, 2) = 0;
-28) CREATE TABLE worker_2 AS TABLE worker
-    select * INTO worker_2 FROM worker;
-    CREATE TABLE worker_2 LIKE worker;
-29) (select * from worker) INTERSECT (select * from workerclone)
-30) SELECT * FROM worker EXCEPT SELECT * FROM workerclone
+26) SELECT * FROM WORKER WHERE MOD(WORKER_ID, 2) <> 0;
+27) SELECT * FROM WORKER WHERE MOD(WORKER_ID, 2) = 0;
+28) CREATE TABLE WORKER_2 AS TABLE WORKER
+    SELECT * INTO WORKER_2 FROM WORKER;
+    CREATE TABLE WORKER_2 LIKE WORKER;
+29) (SELECT * FROM WORKER) INTERSECT (SELECT * FROM WORKERCLONE)
+30) SELECT * FROM WORKER EXCEPT SELECT * FROM WORKERCLONE
 31) SELECT NOW();
-32) select * from worker order by salary asc limit 10
-33) select max(salary) from worker limit 5
-    SELECT SALARY FROM worker ORDER BY SALARY DESC LIMIT 5;
-34) select Salary from worker W WHERE 4 = (
-    select COUNT( DISTINCT ( W2.Salary ) )
-    from Worker W2
-    WHERE W2.Salary >= W1.Salary);
-35) select distinct W.WORKER_ID, W.FIRST_NAME, W.SALARY
-    from worker W, worker W1 
-    where W.SALARY = W1.SALARY 
-    and W.WORKER_ID != W1.WORKER_ID;
-36) select max(SALARY) from worker 
-    where SALARY not in (select max(SALARY) from worker);
-37) select FIRST_NAME, DEPARTMENT from worker W where W.DEPARTMENT='Sales' 
-    union all 
-    select FIRST_NAME, DEPARTMENT from Worker W1 where W1.DEPARTMENT='Sales';
-38) (SELECT * FROM worker)
+32) SELECT * FROM WORKER ORDER BY SALARY ASC LIMIT 10
+33) SELECT MAX(SALARY) FROM WORKER LIMIT 5
+    SELECT SALARY FROM WORKER ORDER BY SALARY DESC LIMIT 5;
+34) SELECT SALARY FROM WORKER W WHERE 4 = (
+    SELECT COUNT( DISTINCT ( W2.SALARY ) )
+    FROM WORKER W2
+    WHERE W2.SALARY >= W1.SALARY);
+35) SELECT DISTINCT W.WORKER_ID, W.FIRST_NAME, W.SALARY
+    FROM WORKER W, WORKER W1 
+    WHERE W.SALARY = W1.SALARY 
+    AND W.WORKER_ID != W1.WORKER_ID;
+36) SELECT MAX(SALARY) FROM WORKER 
+    WHERE SALARY NOT IN (SELECT MAX(SALARY) FROM WORKER);
+37) SELECT FIRST_NAME, DEPARTMENT FROM WORKER W WHERE W.DEPARTMENT='Sales' 
+    UNION ALL 
+    SELECT FIRST_NAME, DEPARTMENT FROM WORKER W1 WHERE W1.DEPARTMENT='Sales';
+38) (SELECT * FROM WORKER)
     INTERSECT
-    (SELECT * FROM workerclone);
-39) SELECT * FROM WORKER WHERE WORKER_ID <= (SELECT count(WORKER_ID)/2 from worker);
-40) SELECT DEPARTMENT, COUNT(WORKER_ID) as number_of_Workers FROM worker 
+    (SELECT * FROM WORKERCLONE);
+39) SELECT * FROM WORKER WHERE WORKER_ID <= (SELECT COUNT(WORKER_ID)/2 FROM WORKER);
+40) SELECT DEPARTMENT, COUNT(WORKER_ID) AS NUMBER_OF_WORKERS FROM WORKER 
     GROUP BY DEPARTMENT HAVING COUNT(WORKER_ID) < 5;
-41) select department, count(department) as number_of_workers from worker group by department;
-42) select * from worker where WORKER_ID = (select max(WORKER_ID) from worker)
-43) select * from worker where WORKER_ID = (select min(WORKER_ID) from worker)4
-44) SELECT * FROM Worker WHERE WORKER_ID <=5
+41) SELECT DEPARTMENT, COUNT(DEPARTMENT) AS NUMBER_OF_WORKERS FROM WORKER GROUP BY DEPARTMENT;
+42) SELECT * FROM WORKER WHERE WORKER_ID = (SELECT MAX(WORKER_ID) FROM WORKER)
+43) SELECT * FROM WORKER WHERE WORKER_ID = (SELECT MIN(WORKER_ID) FROM WORKER)4
+44) SELECT * FROM WORKER WHERE WORKER_ID <=5
     UNION
-    SELECT * FROM (SELECT * FROM Worker W order by W.WORKER_ID DESC) AS W1 WHERE W1.WORKER_ID <=5;
-45) SELECT t.DEPARTMENT,t.FIRST_NAME,t.Salary from(SELECT max(Salary) as TotalSalary,DEPARTMENT from Worker group by DEPARTMENT) as TempNew 
-    Inner Join Worker t on TempNew.DEPARTMENT=t.DEPARTMENT 
-    and TempNew.TotalSalary=t.Salary;
-46) SELECT distinct Salary from worker a WHERE 3 >= (SELECT count(distinct Salary) from worker b WHERE a.Salary <= b.Salary) order by a.Salary desc;
-47) SELECT distinct Salary from worker a WHERE 3 >= (SELECT count(distinct Salary) from worker b WHERE a.Salary >= b.Salary) order by a.Salary desc;
-48) SELECT distinct Salary from worker a WHERE 50000 >= (SELECT count(distinct Salary) from worker b WHERE a.Salary <= b.Salary) order by a.Salary desc;
-49) SELECT DEPARTMENT, sum(Salary) from worker group by DEPARTMENT;
-50) select FIRST_NAME, SALARY from worker where SALARY = (select max(SALARY) from worker)
+    SELECT * FROM (SELECT * FROM WORKER W ORDER BY W.WORKER_ID DESC) AS W1 WHERE W1.WORKER_ID <=5;
+45) SELECT T.DEPARTMENT,T.FIRST_NAME,T.SALARY FROM(SELECT MAX(SALARY) AS TOTALSALARY,DEPARTMENT FROM WORKER GROUP BY DEPARTMENT) AS TEMPNEW 
+    INNER JOIN WORKER T ON TEMPNEW.DEPARTMENT=T.DEPARTMENT 
+    AND TEMPNEW.TOTALSALARY=T.SALARY;
+46) SELECT DISTINCT SALARY FROM WORKER A WHERE 3 >= (SELECT COUNT(DISTINCT SALARY) FROM WORKER B WHERE A.SALARY <= B.SALARY) ORDER BY A.SALARY DESC;
+47) SELECT DISTINCT SALARY FROM WORKER A WHERE 3 >= (SELECT COUNT(DISTINCT SALARY) FROM WORKER B WHERE A.SALARY >= B.SALARY) ORDER BY A.SALARY DESC;
+48) SELECT DISTINCT SALARY FROM WORKER A WHERE 50000 >= (SELECT COUNT(DISTINCT SALARY) FROM WORKER B WHERE A.SALARY <= B.SALARY) ORDER BY A.SALARY DESC;
+49) SELECT DEPARTMENT, SUM(SALARY) FROM WORKER GROUP BY DEPARTMENT;
+50) SELECT FIRST_NAME, SALARY FROM WORKER WHERE SALARY = (SELECT MAX(SALARY) FROM WORKER)
 
 
     
+CREATE TABLE worker 
+(
+	WORKER_ID SERIAL PRIMARY KEY,
+	FIRST_NAME CHARACTER VARYING(30),
+	LAST_NAME CHARACTER VARYING(30),
+	SALARY INT,
+	JOING_DATE timestamptz not null default NOW(),
+	DEPARTMENT  CHARACTER VARYING(30)
+);
+
+CREATE TABLE bonus 
+(
+	WORKER_REF_ID SERIAL PRIMARY KEY REFERENCES worker (WORKER_ID),
+	BOUNUS_DATE timestamptz not null default NOW(),
+	BONUS_AMOUNT INT
+);
+
+CREATE TABLE title
+(
+	WORKER_REF_ID SERIAL PRIMARY KEY REFERENCES worker (WORKER_ID) ,
+	WORKER_TITLE CHARACTER VARYING(30),
+	AFFECTED_FROM timestamptz not null default NOW()
+);
+
+INSERT INTO worker (FIRST_NAME, LAST_NAME, SALARY, JOING_DATE, DEPARTMENT) 
+VALUES 
+('Getti', 'Grinn', 100000, current_timestamp, 'Developer'), 
+('Donni', 'Doram', 20000, current_timestamp, 'Sales'),
+('Christie', 'Cheyne', 5000, current_timestamp, 'Accounting'),
+('Paulie', 'Hicklingbottom', 40000, current_timestamp, 'Research and Development'),
+('Jany', 'Edmondson', 6000, current_timestamp, 'Sales'),
+('Carlita', 'Tye', 7000, current_timestamp, 'Product Managment'),
+('Carlota', 'Piddle', 80000, current_timestamp, 'Training'),
+('Averil', 'Evil', 6000, current_timestamp, 'Services'),
+('Sayers', 'Heinonen', 20000, current_timestamp, 'Legal'),
+('Stewart', 'Jambrozed', 15000, current_timestamp, 'Marketing'),
+('Tildy', 'Middis', 45000, current_timestamp, 'Training'),
+('Jacintha', 'Dorrance', 15000, current_timestamp, 'Business Development'),
+('Kissee', 'Nadin', 78000, current_timestamp, 'Business Development'),
+('Nero', 'Dorling', 35000, current_timestamp, 'Support'),
+('Windy', 'Shields', 8700, current_timestamp, 'Research and Development'),
+('Drake', 'Emblin', 93000, current_timestamp, 'Engineering'),
+('Ignacius', 'Fritz', 190000, current_timestamp, 'Bussiness Development'),
+('Carol-jean', 'Stiven', 50000, current_timestamp, 'Product Managment'),
+('Lana', 'Happel', 89000, current_timestamp, 'Reasearch and Development')
+
+
+INSERT INTO BONUS (BOUNS_DATE, BONUS_AMOUNT)
+VALUES
+(current_timestamp, 1000),
+(current_timestamp, 2000),
+(current_timestamp, 5000)
+
+
+INSERT INTO title (WORKER_TITLE, AFFECTED_FROM) 
+VALUES 
+('Desktop Support Technician', current_timestamp),
+('Tax Accountant', current_timestamp),
+('Staff Scientist', current_timestamp),
+('Environmental Tech', current_timestamp),
+('Developer', current_timestamp),
+('Geologist', current_timestamp),
+('GIS Technical Architect', current_timestamp),
+('Project Manager', current_timestamp),
+('Help Desk Technicial', current_timestamp),
+('Desktop Support Technician', current_timestamp),
+('Tax Accountant', current_timestamp),
+('Staff Scientist', current_timestamp),
+('Environmental Tech', current_timestamp),
+('Developer', current_timestamp),
+('Geologist', current_timestamp),
+('GIS Technical Architect', current_timestamp),
+('Project Manager', current_timestamp),
+('Help Desk Technicial', current_timestamp),
+('Social Worker', current_timestamp),
+('Rearch Nurse', current_timestamp),
+('Help Desk Technicial', current_timestamp)
